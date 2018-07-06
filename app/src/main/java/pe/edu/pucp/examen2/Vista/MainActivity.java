@@ -24,6 +24,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import pe.edu.pucp.examen2.Modelo.Usuario;
 import pe.edu.pucp.examen2.Presentador.IUsuarioPresenter;
 import pe.edu.pucp.examen2.Presentador.UsuarioPresenter;
 import pe.edu.pucp.examen2.R;
@@ -58,8 +59,9 @@ public class MainActivity extends AppCompatActivity  implements OnMapReadyCallba
                     .findFragmentById(R.id.map);
             mapFragment.getMapAsync(this);
         } else {
-            Dialog dialog = GooglePlayServicesUtil.getErrorDialog(status, (Activity) getApplicationContext(), 10);
-            dialog.show();
+            System.out.println("Connection lost");
+//            Dialog dialog = GooglePlayServicesUtil.getErrorDialog(status, (Activity) getApplicationContext(), 10);
+//            dialog.show();
         }
 
 
@@ -69,7 +71,6 @@ public class MainActivity extends AppCompatActivity  implements OnMapReadyCallba
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-        iUsuarioPresenter.enviarDatosUsuario(getApplicationContext(),32.3,43.3);
 
     }
 
@@ -88,6 +89,8 @@ public class MainActivity extends AppCompatActivity  implements OnMapReadyCallba
                 LatLng latLng1Actual =  new LatLng(location.getLatitude(),location.getLongitude());
                 mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng1Actual));
                 mMap.animateCamera(CameraUpdateFactory.zoomTo(11));
+                String keyUsuario= "-LGlkp0jGETJY-Oc0XJ0";
+                iUsuarioPresenter.enviarDatosUsuario(getApplicationContext(),28.0289837,1.6666663,keyUsuario);
             }
 
             @Override
@@ -119,5 +122,12 @@ public class MainActivity extends AppCompatActivity  implements OnMapReadyCallba
                 startActivity(intent);
                 break;
         }
+    }
+
+    @Override
+    public void onDestroy () {
+        super.onDestroy();
+    // setear posiciones a 0
+
     }
 }

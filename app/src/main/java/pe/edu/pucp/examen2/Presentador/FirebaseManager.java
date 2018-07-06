@@ -35,10 +35,10 @@ public class FirebaseManager {
         return usuario;
     }
 
-    public void EnviarDatosUsuario(Double x, Double y){
+    public void EnviarDatosUsuario(Double x, Double y,String key){
         Usuario usuario = obtenerUsuario(x,y);
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
-        String key = ref.child(USUARIO_REFERENCE).push().getKey();
+        //String key = ref.child(USUARIO_REFERENCE).push().getKey();
         ref.child(USUARIO_REFERENCE).child(key).setValue(usuario);
     }
 
@@ -55,6 +55,7 @@ public class FirebaseManager {
                         String key = tarjetaSnapshot.getKey();
                         System.out.println("KEY:"+key);
                         Usuario usuario = tarjetaSnapshot.getValue(Usuario.class);
+                        usuario.setKey(key);
                         listaUsuario.add(usuario);
                     }
                     funcionLista.apply(listaUsuario);

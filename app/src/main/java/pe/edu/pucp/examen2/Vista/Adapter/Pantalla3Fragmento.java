@@ -81,7 +81,6 @@ public class Pantalla3Fragmento extends Fragment implements IPantalla3 {
 
     @Override
     public void añadirUsuarios(List<Usuario> listaUsuarios) {
-        System.out.println("GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG");
         adapter.setData(listaUsuarios);
     }
 

@@ -25,12 +25,9 @@ public class UsuarioPresenter implements IUsuarioPresenter {
             @Override
             public Boolean apply(List<Usuario> input) {
                 iPantalla3.limpiar();
-                System.out.println("INPUT INPUT INPUT INPUT");
                 for(Usuario usuario: input){
-                    System.out.println("Usuario usuario!!!");
                     listaUsuaios.add(usuario);
                 }
-                System.out.println("QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ");
                 System.out.println("SIZE: "+listaUsuaios.size());
                 iPantalla3.añadirUsuarios(listaUsuaios);
                 iPantalla3.finalizarRefresh();
@@ -40,8 +37,8 @@ public class UsuarioPresenter implements IUsuarioPresenter {
     }
 
     @Override
-    public void enviarDatosUsuario(Context context, Double x, Double y) {
-        FirebaseManager.getInstance(context).EnviarDatosUsuario(x,y);
+    public void enviarDatosUsuario(Context context, Double x, Double y,String key) {
+        FirebaseManager.getInstance(context).EnviarDatosUsuario(x,y,key);
     }
 
 }

@@ -7,6 +7,7 @@ public class Usuario {
 
     private String name;
     private String alias;
+    private String key;
     private List<Double> posicion;
 
     public Usuario(String name, String alias, Double x, Double y){
@@ -44,6 +45,15 @@ public class Usuario {
     public void setPosicion(List<Double> posicion) {
         this.posicion = posicion;
     }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
+
 
 //    public Double getX(){
 //        return posicion.get(0);

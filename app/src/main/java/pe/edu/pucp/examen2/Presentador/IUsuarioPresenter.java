@@ -4,5 +4,5 @@ import android.content.Context;
 
 public interface IUsuarioPresenter {
     void obtenerUsuarios();
-    void enviarDatosUsuario(Context context, Double x, Double y);
+    void enviarDatosUsuario(Context context, Double x, Double y,String key);
 }

@@ -28,8 +28,10 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import pe.edu.pucp.examen2.Modelo.Usuario;
 import pe.edu.pucp.examen2.Presentador.IUsuarioPresenter;
@@ -38,7 +40,7 @@ import pe.edu.pucp.examen2.R;
 import pe.edu.pucp.examen2.Vista.MainActivity;
 import pe.edu.pucp.examen2.Vista.Pantalla2Activity;
 
-public class Pantalla2Fragmento extends Fragment  implements OnMapReadyCallback {
+public class Pantalla2Fragmento extends Fragment  implements OnMapReadyCallback, IPantalla3 {
     private GoogleMap mMap;
 
     private Button botonSolmenly;
@@ -137,6 +139,29 @@ public class Pantalla2Fragmento extends Fragment  implements OnMapReadyCallback 
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,1000,1,locationListener);
         mMap.setMyLocationEnabled(true);
         mMap.getUiSettings().setMyLocationButtonEnabled(true);
+    }
+
+    @Override
+    public void limpiar() {
+        mMap.clear();
+    }
+
+    @Override
+    public void añadirUsuarios(List<Usuario> listaUsuarios) {
+
+        for(Usuario usuario:listaUsuarios){
+            if(usuario.getPosicion() != null && usuario.getPosicion().size()==2){
+                System.out.println("Usuario con posiciones");
+                LatLng point = new LatLng(usuario.getPosicion().get(0),usuario.getPosicion().get(1));
+                MarkerOptions markerActual = new MarkerOptions().position(point);
+                mMap.addMarker(markerActual);
+            }
+        }
+    }
+
+    @Override
+    public void finalizarRefresh() {
+
     }
 //
 //    @Override
